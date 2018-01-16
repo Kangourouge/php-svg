@@ -1,6 +1,6 @@
 {
-    "name": "meyfa/php-svg",
-    "homepage": "https://github.com/meyfa/php-svg",
+    "name": "kangourouge/php-svg",
+    "homepage": "https://github.com/Kangourouge/php-svg",
     "type": "library",
     "description": "Read, edit, write, and render SVG files with PHP",
     "keywords": ["svg"],
