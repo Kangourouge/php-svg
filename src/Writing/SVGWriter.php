@@ -2,6 +2,7 @@
 
 namespace SVG\Writing;
 
+use SVG\Nodes\Shapes\SVGText;
 use SVG\Nodes\Structures\SVGStyle;
 use SVG\Nodes\SVGNode;
 use SVG\Nodes\SVGNodeContainer;
@@ -49,7 +50,7 @@ class SVGWriter
         $this->appendAttributes($node->getSerializableAttributes());
         $this->appendStyles($node->getSerializableStyles());
 
-        if (!($node instanceof SVGNodeContainer) && !($node instanceof SVGStyle)) {
+        if (!($node instanceof SVGNodeContainer) && !($node instanceof SVGStyle) && !($node instanceof SVGText)) {
             $this->outString .= ' />';
             return;
         }
@@ -60,6 +61,10 @@ class SVGWriter
             $this->outString .= '</'.$node->getName().'>';
 
             return;
+        }
+
+        if ($node instanceof SVGText) {
+            $this->outString .= $node->getContent();
         }
 
         for ($i = 0, $n = $node->countChildren(); $i < $n; ++$i) {
